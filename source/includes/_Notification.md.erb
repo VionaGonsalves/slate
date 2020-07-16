@@ -1,0 +1,39 @@
+# Notification Service
+
+
+
+
+## proclamation of house-keeping activities
+
+```http
+POST http://mosaic.dev1.lti-mosaic.com/aiops/notification-svc/v1/notification/{provider} HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+http://mosaic.dev1.lti-mosaic.com/aiops/notification-svc/v1/notification/email
+```
+
+> Below is the sample response
+
+```json
+{
+    "Response": "Notification Sent",
+    "Status": "Success"
+}
+```
+
+based on provider, notification is sent
+
+### HTTP Request
+`POST http://mosaic.dev1.lti-mosaic.com/aiops/notification-svc/v1/notification/`
+
+### Query Parameters
+`{ \ "template_id": "kafka_lag", \ "config_identifier": "email_1", \ "subject" : "Kafka Lag issue", \ "template_params": [{"invalid_asset_count":0,"table_name":"Asset","total_assets":32045},{"city":166,"continent":1,"country":140,"duplicate_location":1,"issue_warning_location":0,"region":0,"state":2,"table_name":"Location","total_location":459,"zip_code":459}], \ "recipients": ["prakhar.jain%40gmail.com"] \  }`
+
+Metadata | Yes/No
+--------- | -------
+Authentication | Yes
+Pagination | No
+Sorting | No
+Response Profile | No

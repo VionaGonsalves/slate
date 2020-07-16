@@ -1,0 +1,98 @@
+# Connector
+
+This resource helps to manage user creation and management and federating with AD services
+
+## get tickets through polling
+
+```http
+GET http://mosaic.dev1.lti-mosaic.com/aiops/connector-svc /v1/get-polling/{channel_id} HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+http://mosaic.dev1.lti-mosaic.com/aiops/connector-svc/v1/get-polling/ch_snow_polling
+```
+
+> Below is the sample response
+
+```json
+Polling completed successfuly
+```
+
+fetches new or updated tickets from snow through polling
+
+### HTTP Request
+`GET http://mosaic.dev1.lti-mosaic.com/aiops/connector-svc/v1/get-polling/`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | Yes
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## webhook
+
+```http
+POST http://mosaic.dev1.lti-mosaic.com/aiops/connector-svc/v1/wh/handler/{channel_id} HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+http://mosaic.dev1.lti-mosaic.com/aiops/connector-svc/v1/wh/handler/cs_nr_json_grp
+```
+
+> Below is the sample response
+
+```json
+RecordMetadata(topic='ps_nr_json', partition=2, topic_partition=TopicPartition(topic='ps_nr_json', partition=2), offset=2, timestamp=1583493213606, checksum=None, serialized_key_size=-1, serialized_value_size=1034, serialized_header_size=-1)
+```
+
+consumes the alerts sent from different monitoring tools
+
+### HTTP Request
+`POST http://mosaic.dev1.lti-mosaic.com/aiops/connector-svc/v1/wh/handler/`
+
+### Query Parameters
+`{
+    "account_name": "Corporate_Core/Collaboration",
+    "condition_name": "CPU is 99%",
+    "current_state": "open",
+    "details": "msBOAp01 has internet link issues and poor connectivity",
+    "incident_id": 61158407,
+    "incident_url": "https://alerts.newrelic.com/accounts/1932740/incidents/61158407",
+    "owner": "",
+    "policy_name": "[Core Collaboration Engineering] P1 Custom Alert Policy",
+    "policy_url": "https://alerts.newrelic.com/accounts/193TACACS2740/policies/289516",
+    "runbook_url": "https://confluence.mtvi.com/display/INO/Alert+Handling+by+Policy",
+    "timestamp": 1583493158,
+    "u_alert_status": "Emergency / Now",
+    "u_configuration_item": [
+        {
+            "id": "1560142355598774826",
+            "labels": {},
+            "link": "https://infrastructure.newrelic.com/accounts/1932740/alertLanding?violationId=325620355",
+            "name": "msBOAp01",
+            "product": "INFRASTRUCTURE",
+            "type": "Host"
+        }
+    ],
+    "u_display_only": "false",
+    "u_impact": "2",
+    "u_service": "[Core Collaboration Engineering] P2 Custom Alert Policy",
+    "u_service_type": "Domain Controller - FRSSysVol CRITICAL",
+    "u_source": "NewRelic"
+}`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | Yes
+Pagination | No
+Offset | No
+Response Profile | No
+
+
