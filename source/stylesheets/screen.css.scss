@@ -58,7 +58,7 @@ html, body {
   left: 0;
   bottom: 0;
   width: $nav-width;
-  background-color: $nav-bg;
+  background-color: #FFFFFF;
   font-size: 13px;
   font-weight: bold;
 
@@ -74,15 +74,18 @@ html, body {
   // This is the logo at the top of the ToC
   .logo {
     display: block;
-    max-width: 100%;
+    max-width: 93%;
     margin-bottom: $logo-margin;
+    height: 32px;
+    padding: 10px;
+    background: #000000;
   }
 
   &>.search {
     position: relative;
 
     input {
-      background: $nav-bg;
+      background: #f7fafc;
       border-width: 0 0 1px 0;
       border-color: $search-box-border-color;
       padding: 6px 0 6px 20px;
@@ -90,7 +93,7 @@ html, body {
       margin: $nav-v-padding $nav-padding;
       width: $nav-width - ($nav-padding*2);
       outline: none;
-      color: $nav-text;
+      color: #000000;
       border-radius: 0; /* ios has a default border radius */
     }
 
@@ -98,7 +101,7 @@ html, body {
       position: absolute;
       top: 17px;
       left: $nav-padding;
-      color: $nav-text;
+      color: #000000;
       @extend %icon-search;
     }
   }
@@ -145,7 +148,7 @@ html, body {
   }
 
   li {
-    color: $nav-text;
+    color: #000000;
     transition-property: background;
     transition-timing-function: linear;
     transition-duration: 200ms;
@@ -159,13 +162,13 @@ html, body {
 
   // this is parent links of the currently selected ToC entry
   .toc-link.active-parent {
-    background-color: $nav-active-parent-bg;
-    color: $nav-active-parent-text;
+    background-color: #ffffff;
+    color: #000000;
   }
 
   .toc-list-h2 {
     display: none;
-    background-color: $nav-subitem-bg;
+    background-color: #ffffff;
     font-weight: 500;
   }
 
@@ -180,7 +183,7 @@ html, body {
     border-top: 1px dashed $nav-footer-border-color;
 
     li,a {
-      color: $nav-text;
+      color: #000000;
       text-decoration: none;
     }
 
@@ -203,7 +206,7 @@ html, body {
   white-space: nowrap;
   text-overflow: ellipsis;
   text-decoration: none;
-  color: $nav-text;
+  color: #000000;
   transition-property: background;
   transition-timing-function: linear;
   transition-duration: 130ms;
@@ -255,6 +258,7 @@ html, body {
   min-height: 100%;
 
   padding-bottom: 1px; // prevent margin overflow
+  border-right: 1px solid #F3F7F9;
 
   // The dark box is what gives the code samples their dark background.
   // It sits essentially under the actual content block, which has a
@@ -263,7 +267,7 @@ html, body {
   // half of the content always this background color.
   .dark-box {
     width: $examples-width;
-    background-color: $examples-bg;
+    background-color: #1e2224;
     position: absolute;
     right: 0;
     top: 0;
@@ -284,7 +288,8 @@ html, body {
   font-weight: bold;
   overflow-x: auto;
   a {
-    display: inline;
+    display: block;
+    float: left;
     color: $lang-select-text;
     text-decoration: none;
     padding: 0 10px;

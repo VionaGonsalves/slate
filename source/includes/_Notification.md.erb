@@ -1,17 +1,212 @@
 # Notification Service
 
-
-
-
-## proclamation of house-keeping activities
+## service status check
 
 ```http
-POST http://mosaic.dev1.lti-mosaic.com/aiops/notification-svc/v1/notification/{provider} HTTP/1.1
+GET https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/ping HTTP/1.1
 ```
 > Below is the sample request body
 
 ```json
-http://mosaic.dev1.lti-mosaic.com/aiops/notification-svc/v1/notification/email
+https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/ping
+```
+
+> Below is the sample response
+
+```json
+Pong
+```
+
+api to check service health
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/ping`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No
+--------- | -------
+Authentication | Yes
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## check database connections
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/health-check HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/health-check
+```
+
+> Below is the sample response
+
+```json
+{
+    "status": "up"
+}
+```
+
+api to check connectivity with database
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/health-check`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No
+--------- | -------
+Authentication | Yes
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## insert template
+
+```http
+POST https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/template HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/template
+```
+
+> Below is the sample response
+
+```json
+"Template inserted successfully"
+```
+
+api to insert new template for notification
+
+### HTTP Request
+`POST https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/template`
+
+### Query Parameters
+`{
+    "created_by": "teset",
+    "header": "test",
+    "provider": "test",
+    "template_content": {
+        "body": "test"
+    },
+    "template_identifier": "test"
+}`
+
+Metadata | Yes/No
+--------- | -------
+Authentication | Yes
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## get template
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/template HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/template
+```
+
+> Below is the sample response
+
+```json
+[
+    {
+        "created_at": "2020-07-17",
+        "created_by": "username",
+        "header": "header info",
+        "identifier": "email_1",
+        "provider": "email",
+        "template_content": {
+            "body": "test"
+        },
+        "updated_at": null,
+        "updated_by": null
+    }
+]
+```
+
+api to fetch existing template from database
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/template`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No
+--------- | -------
+Authentication | Yes
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## insert config
+
+```http
+POST https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/config HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/config
+```
+
+> Below is the sample response
+
+```json
+"config inserted successfully"
+```
+
+api to insert new configuration details for notification
+
+### HTTP Request
+`POST https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/config`
+
+### Query Parameters
+`{
+    "config_identifier": "email",
+    "configuration": {
+        "from_": "useremail",
+        "host": "hostaddress",
+        "password": "password",
+        "port": 0
+    },
+    "created_by": "username",
+    "provider": "email"
+}`
+
+Metadata | Yes/No
+--------- | -------
+Authentication | Yes
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## notification
+
+```http
+POST https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/notification/<provider> HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/notification/email
 ```
 
 > Below is the sample response
@@ -23,17 +218,45 @@ http://mosaic.dev1.lti-mosaic.com/aiops/notification-svc/v1/notification/email
 }
 ```
 
-based on provider, notification is sent
+api to send notification to configured users
 
 ### HTTP Request
-`POST http://mosaic.dev1.lti-mosaic.com/aiops/notification-svc/v1/notification/`
+`POST https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/notification`
 
 ### Query Parameters
-`{ \ "template_id": "kafka_lag", \ "config_identifier": "email_1", \ "subject" : "Kafka Lag issue", \ "template_params": [{"invalid_asset_count":0,"table_name":"Asset","total_assets":32045},{"city":166,"continent":1,"country":140,"duplicate_location":1,"issue_warning_location":0,"region":0,"state":2,"table_name":"Location","total_location":459,"zip_code":459}], \ "recipients": ["prakhar.jain%40gmail.com"] \  }`
+`{
+    "config_identifier": "email_1",
+    "recipients": [
+        "prakhar.jain%40gmail.com"
+    ],
+    "subject": "Kafka Lag issue",
+    "template_id": "kafka_lag",
+    "template_params": [
+        {
+            "invalid_asset_count": 0,
+            "table_name": "Asset",
+            "total_assets": 32045
+        },
+        {
+            "city": 166,
+            "continent": 1,
+            "country": 140,
+            "duplicate_location": 1,
+            "issue_warning_location": 0,
+            "region": 0,
+            "state": 2,
+            "table_name": "Location",
+            "total_location": 459,
+            "zip_code": 459
+        }
+    ]
+}`
 
 Metadata | Yes/No
 --------- | -------
 Authentication | Yes
 Pagination | No
-Sorting | No
+Offset | No
 Response Profile | No
+
+
