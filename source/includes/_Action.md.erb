@@ -1,0 +1,139 @@
+## Service Status Check
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/action-svc/v1/ping HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/action-svc/v1/ping
+```
+
+> Below is the sample response
+
+```json
+Pong
+```
+
+Checks if the service is Up 
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/action-svc/v1/ping`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Health-Check of service
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/action-svc/v1/health-check HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/action-svc/v1/health-check
+```
+
+> Below is the sample response
+
+```json
+{
+    "database": "connected",
+    "kafka": "connected",
+    "services": [
+        "aiops-connector-service/aiops/connector-svc: connected"
+    ],
+    "status": "up"
+}
+```
+
+Checks if database, kafka and associated services are up
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/action-svc/v1/health-check`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Trigger Action
+
+```http
+POST https://mosaic.ga.lti-mosaic.com/aiops/action-svc/v2/actions/trigger/{action_name} HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/action-svc/v2/actions/trigger/inc_snow.create_incident_ui
+```
+
+> Below is the sample response
+
+```json
+{
+    "data": "Incident 'INC0058869' created Successfully!!! "
+}
+```
+
+Performs a specific action based on action-name
+
+### HTTP Request
+`POST https://mosaic.ga.lti-mosaic.com/aiops/action-svc/v2/actions/trigger/`
+
+### Query Parameters
+`{
+    "alert_data": {
+        "ack_time": 0,
+        "actual_timestamp": 1565264640,
+        "alert_acknowledge": true,
+        "alert_id": "Nagios20200214112433_0_1",
+        "alert_type": "Node - Down",
+        "assigned_time": 0,
+        "assigned_to": "Unassigned",
+        "broker_timestamp": 1565264664,
+        "childs": 0,
+        "closed_time": "Not Available",
+        "cmdb_ci": "PPI-FRANCE-RTR",
+        "description": "Node - Down on PPI-FRANCE-RTR",
+        "id": "0000008200",
+        "incident_id": "Not Available",
+        "review_needed": true,
+        "severity": "Major",
+        "source": "SolarWinds",
+        "status": "Down",
+        "trigger": ""
+    },
+    "caller": "Rhishikesh",
+    "children": [],
+    "description": "Node - Down on PPI-FRANCE-RTR",
+    "priority": "P1",
+    "status": "New",
+    "timestamp": "2019-08-09T06:42:12.924Z",
+    "title": "0000008200",
+    "urgency": "Critical",
+    "user_email": "mustafa.neemuchwala%40lntinfotech.com"
+}`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+

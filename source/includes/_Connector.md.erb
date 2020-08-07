@@ -1,96 +1,690 @@
-# Connector
-
-This resource helps to manage user creation and management and federating with AD services
-
-## get tickets through polling
+## Service Status Check
 
 ```http
-GET http://mosaic.dev1.lti-mosaic.com/aiops/connector-svc /v1/get-polling/{channel_id} HTTP/1.1
+GET https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v1/ping HTTP/1.1
 ```
 > Below is the sample request body
 
 ```json
-http://mosaic.dev1.lti-mosaic.com/aiops/connector-svc/v1/get-polling/ch_snow_polling
+https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v1/ping
 ```
 
 > Below is the sample response
 
 ```json
-Polling completed successfuly
+Pong
 ```
 
-fetches new or updated tickets from snow through polling
+API to check service health
 
 ### HTTP Request
-`GET http://mosaic.dev1.lti-mosaic.com/aiops/connector-svc/v1/get-polling/`
+`GET https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v1/ping`
 
 ### Query Parameters
 `NA`
 
 Metadata | Yes/No 
 --------- | ------- 
-Authentication | Yes
+Authentication | No
 Pagination | No
 Offset | No
 Response Profile | No
 
 
-## webhook
+## Check connectivity with database and kafka
 
 ```http
-POST http://mosaic.dev1.lti-mosaic.com/aiops/connector-svc/v1/wh/handler/{channel_id} HTTP/1.1
+GET https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v1/health-check HTTP/1.1
 ```
 > Below is the sample request body
 
 ```json
-http://mosaic.dev1.lti-mosaic.com/aiops/connector-svc/v1/wh/handler/cs_nr_json_grp
+https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v1/health-check
 ```
 
 > Below is the sample response
 
 ```json
-RecordMetadata(topic='ps_nr_json', partition=2, topic_partition=TopicPartition(topic='ps_nr_json', partition=2), offset=2, timestamp=1583493213606, checksum=None, serialized_key_size=-1, serialized_value_size=1034, serialized_header_size=-1)
+{
+    "database": "connected",
+    "kafka_downstream": "connected",
+    "kafka_upstream": "connected",
+    "status": "UP"
+}
 ```
 
-consumes the alerts sent from different monitoring tools
+API to check connectivity with Database and messaging queue (kafka)
 
 ### HTTP Request
-`POST http://mosaic.dev1.lti-mosaic.com/aiops/connector-svc/v1/wh/handler/`
+`GET https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v1/health-check`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Webhook Operation
+
+```http
+POST https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v1/wh/handler/cs_datadog_wh HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v1/wh/handler/cs_datadog_wh
+```
+
+> Below is the sample response
+
+```json
+RecordMetadata(topic='ps_dg_json', partition=0, topic_partition=TopicPartition(topic='ps_dg_json', partition=0), offset=1, timestamp=1595932843340, checksum=None, serialized_key_size=-1, serialized_value_size=202, serialized_header_size=-1)
+```
+
+API to expose webhook with other monitoring tools
+
+### HTTP Request
+`POST https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v1/wh/handler/<webhook_name>`
 
 ### Query Parameters
 `{
-    "account_name": "Corporate_Core/Collaboration",
-    "condition_name": "CPU is 99%",
-    "current_state": "open",
-    "details": "msBOAp01 has internet link issues and poor connectivity",
-    "incident_id": 61158407,
-    "incident_url": "https://alerts.newrelic.com/accounts/1932740/incidents/61158407",
-    "owner": "",
-    "policy_name": "[Core Collaboration Engineering] P1 Custom Alert Policy",
-    "policy_url": "https://alerts.newrelic.com/accounts/193TACACS2740/policies/289516",
-    "runbook_url": "https://confluence.mtvi.com/display/INO/Alert+Handling+by+Policy",
-    "timestamp": 1583493158,
-    "u_alert_status": "Emergency / Now",
-    "u_configuration_item": [
-        {
-            "id": "1560142355598774826",
-            "labels": {},
-            "link": "https://infrastructure.newrelic.com/accounts/1932740/alertLanding?violationId=325620355",
-            "name": "msBOAp01",
-            "product": "INFRASTRUCTURE",
-            "type": "Host"
-        }
-    ],
-    "u_display_only": "false",
-    "u_impact": "2",
-    "u_service": "[Core Collaboration Engineering] P2 Custom Alert Policy",
-    "u_service_type": "Domain Controller - FRSSysVol CRITICAL",
-    "u_source": "NewRelic"
+    "Source": "datadog",
+    "actual_timestamp": "1592474066000",
+    "alert_state": "Warn",
+    "alert_type": "system.mem.usable",
+    "cmdb_ci": "nxEAIq34",
+    "description": "ZZ_WEBHOOK TEST Memory-Usable Alarm OUSPXAAG"
 }`
 
 Metadata | Yes/No 
 --------- | ------- 
-Authentication | Yes
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## ITPA Login
+
+```http
+POST https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itpa/braio/login HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itpa/braio/login
+```
+
+> Below is the sample response
+
+```json
+Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJoUThYNnk1WnBNTjhidVJHRVJzMHJ5aUtRajVEejVsNkRuODc0SWxiTmpVIn0.eyJqdGkiOiI5MzJlOTU5Yi05MmI4LTQ5YTAtOGE3MS0yNDg5MTdiMTU3M2UiLCJleHAiOjE1OTU5Mzg2NzIsIm5iZiI6MCwiaWF0IjoxNTk1OTM4MzcyLCJpc3MiOiJodHRwczovL2JyYWlvLWRlbW8ubG50aW5mb3RlY2guY29tL2F1dGgvcmVhbG1zL0JSQUlPIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjM2MDFjMmQwLTQyMWYtNDIxNS1iYTY3LTg5ZTNjOTcwYmFlMyIsInR5cCI6IkJlYXJlciIsImF6cCI6IlJlc3RfQVBJIiwiYXV0aF90aW1lIjowLCJzZXNzaW9uX3N0YXRlIjoiZGUxNmI1MjAtYjAwOS00MzJkLWIzMTgtMGFkMDAwYzdmMDQzIiwiYWNyIjoiMSIsImFsbG93ZWQtb3JpZ2lucyI6WyJodHRwczovL2JyYWlvLWRlbW8ubG50aW5mb3RlY2guY29tIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImFkbWluIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJSZXN0X0FQSSI6eyJyb2xlcyI6WyJ1bWFfcHJvdGVjdGlvbiJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwiY2xpZW50SWQiOiJSZXN0X0FQSSIsImNsaWVudEhvc3QiOiI0Mi4xMDcuMjMzLjMwIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzZXJ2aWNlLWFjY291bnQtcmVzdF9hcGkiLCJjbGllbnRBZGRyZXNzIjoiNDIuMTA3LjIzMy4zMCIsImVtYWlsIjoic2VydmljZS1hY2NvdW50LXJlc3RfYXBpQHBsYWNlaG9sZGVyLm9yZyJ9.hBc0NL-QpWqYB6hqZHcOL23XJHqLFG98cjjkkEyYBItdSmijO4hqluIbnie-jfE7oXL9hr8UDIlk8eVfOdRHp4p3DM4OvNOs_xu8bulKCTLmBcVa0JwRdMQ2LEqbOfxsQl3FQWNAo2-ekc0KRL-e15V14M0pQcprgzUPgs8bEZo1diuaptKSTUDrp1BxisF7a4pe5Z-eHOdqk8Xj2AWHbaa-TLQkIDDMX8yejAp5jqqF7AQBs0MhVDWMnAq3lzGAfRwDpTG74x2qwBuQC5LHrmA8LWPGeAr27yy-HPy8u87k78ZsfeDE0MDQFWJJ0GZj4U1oZMbqEa0KZkGPIZd9yQ
+```
+
+API to login to ITPA tool
+
+### HTTP Request
+`POST https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itpa/<source>/<operation>`
+
+### Query Parameters
+`{
+    "source": "braio"
+}`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## ITPA Execute WorkFlow
+
+```http
+POST https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itpa/braio/execute_workflow HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itpa/braio/execute_workflow
+```
+
+> Below is the sample response
+
+```json
+{
+    "workflowInstanceId": "2103"
+}
+```
+
+API to execute workflow in ITPA tool
+
+### HTTP Request
+`POST https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itpa/<source>/<operation>`
+
+### Query Parameters
+`{
+    "source": "braio",
+    "ttdCustomerId": 101,
+    "variables": {}
+}`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## ITPA Fetch WorkFlow Log
+
+```http
+POST https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itpa/braio/fetch_workflow_log HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itpa/braio/fetch_workflow_log
+```
+
+> Below is the sample response
+
+```json
+[{statusDesc":"Request initiated succesffully...","currentStatus":"Initiated","percentageofCompletion":5,"lastupdateTime":"2020-07-28 12:35:12.575"},{"statusDesc":"Validating+the+inputs","currentStatus":"${user_ticketID}+Entered+inputs","percentageofCompletion":20,"lastupdateTime":"2020-07-28 12:35:17.651"},{"statusDesc":"${user_ticketID}","currentStatus":"${user_ticketID}+In-Progress","percentageofCompletion":50,"lastupdateTime":"2020-07-28 12:35:17.723"},{"statusDesc":"${user_ticketID}+successfully+executed+the+work+flow","currentStatus":"Completed","percentageofCompletion":100,"lastupdateTime":"2020-07-28 12:35:17.792"}]"
+```
+
+API to fetch workflow logs from ITPA tool for any workflow id
+
+### HTTP Request
+`POST https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itpa/<source>/<operation>`
+
+### Query Parameters
+`{
+    "WorkFlowInstanceId": 2103,
+    "source": "braio"
+}`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## ITPA Fetch Current Status
+
+```http
+POST https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itpa/braio/fetch_current_status HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itpa/braio/fetch_current_status
+```
+
+> Below is the sample response
+
+```json
+{statusDesc":"${user_ticketID}+successfully+executed+the+work+flow","currentStatus":"Completed","percentageofCompletion":100,"lastupdateTime":"2020-07-28 12:35:17.792"}"
+```
+
+API to fetch current status of workflow from ITPA tool for any workflow id
+
+### HTTP Request
+`POST https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itpa/<source>/<operation>`
+
+### Query Parameters
+`{
+    "WorkFlowInstanceId": 2103,
+    "source": "braio"
+}`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## ITPA Fetch All WorkFlows
+
+```http
+POST https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itpa/braio/fetch_all_workflows HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itpa/braio/fetch_all_workflows
+```
+
+> Below is the sample response
+
+```json
+[{subProcessCustomerMapId":"1","modifiedUser":"itopsa admin","createdDate:":"2020-07-07 16:13:03.7","latestVersion":5,"modifiedDate":"2020-07-07 16:13:53.24","description":"Uploaded package version:5","workflowName":"serviceRestart","workflowType":"dev","createdUser":"itopsa admin"},{"subProcessCustomerMapId":"101","modifiedUser":"itopsa admin","createdDate:":"2020-07-07 16:20:39.411","latestVersion":2,"modifiedDate":"2020-07-07 16:21:15.686","description":"Uploaded package version:2","workflowName":"serviceStop","workflowType":"dev","createdUser":"itopsa admin"},{"subProcessCustomerMapId":"102","modifiedUser":"itopsa admin","createdDate:":"2020-06-05 12:15:40.273","latestVersion":2,"modifiedDate":"2020-06-08 08:41:56.178","description":"Uploaded package version:2","workflowName":"serviceRestart","workflowType":"dev","createdUser":"itopsa admin"},{"subProcessCustomerMapId":"201","modifiedUser":"itopsa admin","createdDate:":"2020-06-18 12:26:36.152","latestVersion":2,"modifiedDate":"2020-06-18 12:27:21.879","description":"V2","workflowName":"UserCreation","workflowType":"dev","createdUser":"itopsa admin"},{"subProcessCustomerMapId":"401","modifiedUser":"itopsa admin","createdDate:":"2020-06-19 08:51:51.163","latestVersion":1,"modifiedDate":"2020-06-19 08:53:50.967","description":"Uploaded package version:1","workflowName":"passwdsubprocess1","workflowType":"dev","createdUser":"itopsa admin"},{"subProcessCustomerMapId":"501","modifiedUser":"itopsa admin","createdDate:":"2020-06-22 15:09:45.767","latestVersion":3,"modifiedDate":"2020-06-22 15:10:22.253","description":"V3","workflowName":"PasswordReset","workflowType":"dev","createdUser":"itopsa admin"},{"subProcessCustomerMapId":"604","modifiedUser":"Susan Praisey","createdDate:":"2020-07-13 14:16:20.954","latestVersion":8,"modifiedDate":"2020-07-27 08:40:44.333","description":"V8","workflowName":"HighDiskUtilization","workflowType":"dev","createdUser":"Sandesh Kadam"},{"subProcessCustomerMapId":"605","modifiedUser":"Susan Praisey","createdDate:":"2020-07-14 13:01:23.798","latestVersion":13,"modifiedDate":"2020-07-15 12:15:11.5","description":"13","workflowName":"UserCreation","workflowType":"dev","createdUser":"Madhavi Garg"},{"subProcessCustomerMapId":"606","modifiedUser":"Susan Praisey","createdDate:":"2020-07-14 12:15:51.684","latestVersion":9,"modifiedDate":"2020-07-16 06:23:05.684","description":"v9","workflowName":"userModification","workflowType":"dev","createdUser":"Shashi Yadav"},{"subProcessCustomerMapId":"802","modifiedUser":"Milli Priyam","createdDate:":"2020-07-15 10:11:03.658","latestVersion":6,"modifiedDate":"2020-07-15 10:17:17.797","description":"demo01","workflowName":"DBHealthCheck","workflowType":"dev","createdUser":"Milli Priyam"}]"
+```
+
+API to fetch all workflows for a project from ITPA tool
+
+### HTTP Request
+`POST https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itpa/<source>/<operation>`
+
+### Query Parameters
+`{
+    "source": "braio"
+}`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## ITSM Create Ticket
+
+```http
+POST https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itsm/snow/snow HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itsm/snow/snow
+```
+
+> Below is the sample response
+
+```json
+{
+    "result": {
+        "active": "true",
+        "activity_due": "",
+        "additional_assignee_list": "",
+        "approval": "not requested",
+        "approval_history": "",
+        "approval_set": "",
+        "assigned_to": "",
+        "assignment_group": "",
+        "business_duration": "",
+        "business_service": "",
+        "business_stc": "",
+        "calendar_duration": "",
+        "calendar_stc": "",
+        "caller_id": {
+            "link": "https://lntinfotechdemo3.service-now.com/api/now/table/sys_user/string",
+            "value": "string"
+        },
+        "category": "inquiry",
+        "caused_by": "",
+        "child_incidents": "0",
+        "close_code": "",
+        "close_notes": "",
+        "closed_at": "",
+        "closed_by": "",
+        "cmdb_ci": "",
+        "comments": "",
+        "comments_and_work_notes": "",
+        "company": "",
+        "contact_type": "",
+        "correlation_display": "",
+        "correlation_id": "",
+        "delivery_plan": "",
+        "delivery_task": "",
+        "description": "",
+        "due_date": "",
+        "escalation": "0",
+        "expected_start": "",
+        "follow_up": "",
+        "group_list": "",
+        "hold_reason": "",
+        "impact": "3",
+        "incident_state": "1",
+        "knowledge": "false",
+        "location": "",
+        "made_sla": "true",
+        "notify": "1",
+        "number": "INC0151259",
+        "opened_at": "2020-03-05 08:57:17",
+        "opened_by": {
+            "link": "https://lntinfotechdemo3.service-now.com/api/now/table/sys_user/ab5414071b12c0105cc177f58d4bcbb7",
+            "value": "ab5414071b12c0105cc177f58d4bcbb7"
+        },
+        "order": "",
+        "parent": "",
+        "parent_incident": "",
+        "priority": "5",
+        "problem_id": "",
+        "reassignment_count": "0",
+        "reopen_count": "0",
+        "reopened_by": "",
+        "reopened_time": "",
+        "resolved_at": "",
+        "resolved_by": "",
+        "rfc": "",
+        "severity": "3",
+        "short_description": "",
+        "sla_due": "",
+        "state": "1",
+        "subcategory": "",
+        "sys_class_name": "incident",
+        "sys_created_by": "mosaic.aiops",
+        "sys_created_on": "2020-03-05 08:57:17",
+        "sys_domain": {
+            "link": "https://lntinfotechdemo3.service-now.com/api/now/table/sys_user_group/global",
+            "value": "global"
+        },
+        "sys_domain_path": "/",
+        "sys_id": "6e8287621b5fc4505cc177f58d4bcbb7",
+        "sys_mod_count": "0",
+        "sys_tags": "",
+        "sys_updated_by": "mosaic.aiops",
+        "sys_updated_on": "2020-03-05 08:57:17",
+        "time_worked": "",
+        "upon_approval": "proceed",
+        "upon_reject": "cancel",
+        "urgency": "3",
+        "user_input": "",
+        "watch_list": "",
+        "work_end": "",
+        "work_notes": "",
+        "work_notes_list": "",
+        "work_start": ""
+    }
+}
+```
+
+API to create a ticket in ITSM
+
+### HTTP Request
+`POST https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itsm/<source>/<connector_identifier>`
+
+### Query Parameters
+`{
+    "caller_id": "string",
+    "category": "string",
+    "impact": "string",
+    "sysparm_action": "string",
+    "urgency": "string"
+}`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## ITSM Update Ticket
+
+```http
+PUT https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itsm/snow/snow HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itsm/snow/snow/63208afd1b0f48105cc177f58d4bcbdf
+```
+
+> Below is the sample response
+
+```json
+{
+    "result": {
+        "active": "true",
+        "activity_due": "",
+        "additional_assignee_list": "",
+        "approval": "not requested",
+        "approval_history": "",
+        "approval_set": "",
+        "assigned_to": "",
+        "assignment_group": "",
+        "business_duration": "",
+        "business_service": "",
+        "business_stc": "",
+        "calendar_duration": "",
+        "calendar_stc": "",
+        "caller_id": {
+            "link": "https://lntinfotechdemo3.service-now.com/api/now/table/sys_user/string",
+            "value": "string"
+        },
+        "category": "inquiry",
+        "caused_by": "",
+        "child_incidents": "0",
+        "close_code": "",
+        "close_notes": "",
+        "closed_at": "",
+        "closed_by": "",
+        "cmdb_ci": "",
+        "comments": "",
+        "comments_and_work_notes": "",
+        "company": "",
+        "contact_type": "",
+        "correlation_display": "",
+        "correlation_id": "",
+        "delivery_plan": "",
+        "delivery_task": "",
+        "description": "",
+        "due_date": "",
+        "escalation": "0",
+        "expected_start": "",
+        "follow_up": "",
+        "group_list": "",
+        "hold_reason": "",
+        "impact": "3",
+        "incident_state": "1",
+        "knowledge": "false",
+        "location": "",
+        "made_sla": "true",
+        "notify": "1",
+        "number": "INC0151259",
+        "opened_at": "2020-03-05 08:57:17",
+        "opened_by": {
+            "link": "https://lntinfotechdemo3.service-now.com/api/now/table/sys_user/ab5414071b12c0105cc177f58d4bcbb7",
+            "value": "ab5414071b12c0105cc177f58d4bcbb7"
+        },
+        "order": "",
+        "parent": "",
+        "parent_incident": "",
+        "priority": "5",
+        "problem_id": "",
+        "reassignment_count": "0",
+        "reopen_count": "0",
+        "reopened_by": "",
+        "reopened_time": "",
+        "resolved_at": "",
+        "resolved_by": "",
+        "rfc": "",
+        "severity": "3",
+        "short_description": "",
+        "sla_due": "",
+        "state": "1",
+        "subcategory": "",
+        "sys_class_name": "incident",
+        "sys_created_by": "mosaic.aiops",
+        "sys_created_on": "2020-03-05 08:57:17",
+        "sys_domain": {
+            "link": "https://lntinfotechdemo3.service-now.com/api/now/table/sys_user_group/global",
+            "value": "global"
+        },
+        "sys_domain_path": "/",
+        "sys_id": "6e8287621b5fc4505cc177f58d4bcbb7",
+        "sys_mod_count": "0",
+        "sys_tags": "",
+        "sys_updated_by": "mosaic.aiops",
+        "sys_updated_on": "2020-03-05 08:57:17",
+        "time_worked": "",
+        "upon_approval": "proceed",
+        "upon_reject": "cancel",
+        "urgency": "3",
+        "user_input": "",
+        "watch_list": "",
+        "work_end": "",
+        "work_notes": "",
+        "work_notes_list": "",
+        "work_start": ""
+    }
+}
+```
+
+API to update a ticket in ITSM
+
+### HTTP Request
+`PUT https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itsm/<source>/<connector_identifier>/<sys_id>`
+
+### Query Parameters
+`{
+    "caller_id": "string",
+    "category": "string",
+    "impact": "string",
+    "sysparm_action": "string",
+    "urgency": "string"
+}`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## ITSM Fetch Ticket
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itsm/snow/snow HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itsm/snow/snow/63208afd1b0f48105cc177f58d4bcbdf
+```
+
+> Below is the sample response
+
+```json
+{result": {"parent": "", "made_sla": "true", "caused_by": "", "watch_list": "", "upon_reject": "cancel", "sys_updated_on": "2020-07-28 13:04:49", "child_incidents": "0", "hold_reason": "", "approval_history": "", "number": "INC0576045", "resolved_by": "", "sys_updated_by": "mosaic.aiops.qa", "opened_by": {"link": "https://lntinfotechdemo3.service-now.com/api/now/table/sys_user/d83bba551b3f481053b843f28d4bcbbf", "value": "d83bba551b3f481053b843f28d4bcbbf"}, "user_input": "", "sys_created_on": "2020-07-28 13:04:49", "sys_domain": {"link": "https://lntinfotechdemo3.service-now.com/api/now/table/sys_user_group/global", "value": "global"}, "state": "1", "sys_created_by": "mosaic.aiops.qa", "knowledge": "false", "order": "", "calendar_stc": "", "closed_at": "", "cmdb_ci": "", "delivery_plan": "", "impact": "3", "active": "true", "work_notes_list": "", "business_service": "", "priority": "5", "sys_domain_path": "/", "rfc": "", "time_worked": "", "expected_start": "", "opened_at": "2020-07-28 13:04:49", "business_duration": "", "group_list": "", "work_end": "", "caller_id": {"link": "https://lntinfotechdemo3.service-now.com/api/now/table/sys_user/string", "value": "string"}, "reopened_time": "", "resolved_at": "", "approval_set": "", "subcategory": "", "work_notes": "", "short_description": "", "close_code": "", "correlation_display": "", "delivery_task": "", "work_start": "", "assignment_group": "", "additional_assignee_list": "", "business_stc": "", "description": "", "calendar_duration": "", "close_notes": "", "notify": "1", "sys_class_name": "incident", "closed_by": "", "follow_up": "", "parent_incident": "", "sys_id": "9ab9e6951bde98505cc177f58d4bcb6c", "contact_type": "", "reopened_by": "", "incident_state": "1", "urgency": "3", "problem_id": "", "company": "", "reassignment_count": "0", "activity_due": "", "assigned_to": "", "severity": "3", "comments": "", "approval": "not requested", "sla_due": "", "comments_and_work_notes": "", "due_date": "", "sys_mod_count": "0", "reopen_count": "0", "sys_tags": "", "escalation": "0", "upon_approval": "proceed", "correlation_id": "", "location": "", "category": "inquiry"}}"
+```
+
+API to fetch a ticket in ITSM with its sys id value
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itsm/<source>/<connector_identifier>`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## ITSM Poll Tickets
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itsm/snow/snow HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itsm/snow/snow
+```
+
+> Below is the sample response
+
+```json
+Polling is completed SUCCESSFULLY.
+```
+
+API to poll tickets from ITSM
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itsm/<source>/<connector_identifier>`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## ITSM Fetch Work Notes
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itsm/wn/snow/snow/INC0525724 HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itsm/wn/snow/snow/INC0525724
+```
+
+> Below is the sample response
+
+```json
+{result": [{"work_notes": "2020-07-02 01:44:45 - AIOPS DEV  (Work notes)\ntesting with lucky\n\n2020-07-01 23:35:47 - AIOPS DEV  (Work notes)\nTesting from dev server\n\n2020-07-01 04:39:18 - AIOPS DEV  (Work notes)\ntest\n\n2020-07-01 02:28:32 - AIOPS DEV  (Work notes)\nAIOPS User lucky.dubey@lntinfotech.com(lucky.dubey@lntinfotech.com) updated below fields at 1593584872637\n\nTicket assignment changed to lucky.dubey@lntinfotech.com but not verified if user exists in SNOW. \n \n\n2020-07-01 01:26:19 - AIOPS DEV  (Work notes)\nAIOPS User vikas.kad@lntinfotech.com(vikas.kad@lntinfotech.com) updated below fields at 1593581177270\n\nTicket assignment changed to vikas.kad@lntinfotech.com but not verified if user exists in SNOW. \n \n\n2020-06-30 08:18:26 - AIOPS DEV  (Work notes)\nAIOPS User aiops_vikas(aiops_vikas) updated below fields at 1593519505940\n\nTicket assignment changed to aiops_vikas but not verified if user exists in SNOW. \n \n\n2020-06-30 08:11:48 - AIOPS DEV  (Work notes)\nAIOPS User vikas.kad@lntinfotech.com(vikas.kad@lntinfotech.com) updated below fields at 1593519106389\n\nTicket assignment changed to vikas.kad@lntinfotech.com but not verified if user exists in SNOW. \n \n\n2020-06-30 06:33:32 - AIOPS DEV  (Work notes)\nAIOPS User lucky.dubey@lntinfotech.com(lucky.dubey@lntinfotech.com) updated below fields at 1593513172753\n\nTicket assignment changed to lucky.dubey@lntinfotech.com but not verified if user exists in SNOW. \n \n\n2020-06-29 03:20:55 - AIOPS DEV  (Work notes)\nAIOPS User prakhar.jain@lntinfotech.com(prakhar.jain@lntinfotech.com) updated below fields at 1593415174448\n\nTicket assignment changed to prakhar.jain@lntinfotech.com but not verified if user exists in SNOW. \n \n\n"}]}"
+```
+
+API to fetch work notes of a ticket from ITSM
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v2/itsm/wn/<source>/<connector_identifier>/<number>`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Auto start the services
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v1/start-auto-services HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v1/start-auto-services
+```
+
+> Below is the sample response
+
+```json
+[ ""Threads already running for cs_nr_json_grp"\n", ""Threads already running for cs_nr_str_grp"\n", ""Threads already running for cs_ng_str_grp"\n", ""Threads already running for cs_sw_str_grp"\n", ""Threads already running for cs_nr_app_grp"\n", ""Threads already running for ch_snow_polling"\n" ]
+```
+
+API to auto start the services
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/connector-svc/v1/start-auto-services`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
 Pagination | No
 Offset | No
 Response Profile | No

@@ -1,0 +1,354 @@
+## Service Status Check
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/ping HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/ping
+```
+
+> Below is the sample response
+
+```json
+Pong
+```
+
+API to check service health
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/ping`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Check connectivity with database
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/health-check HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/health-check
+```
+
+> Below is the sample response
+
+```json
+{
+    "status": "up"
+}
+```
+
+API to check connectivity with Database
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/health-check`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Delete Scheduler
+
+```http
+DELETE https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/schedule HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/schedule?scheduler_id=sched000028
+```
+
+> Below is the sample response
+
+```json
+Success
+```
+
+API to delete a scheduled job
+
+### HTTP Request
+`DELETE https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/schedule`
+
+### Query Parameters
+`scheduler_id=sched000028`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Create Scheduler
+
+```http
+POST https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/schedule HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/schedule
+```
+
+> Below is the sample response
+
+```json
+Successfully added scheduler: sched000028
+```
+
+API to  Add/Insert a job to schedule
+
+### HTTP Request
+`POST https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/schedule`
+
+### Query Parameters
+`{
+    "data": {
+        "method": "GET",
+        "name": "upsert_business_audit",
+        "params": "{'id':'database_service.dbOperations.upsert_business_audit'}",
+        "schedule": "{'minute': 'every5','hour': 'all', 'day': 'all', 'month': 'all', 'DOW': 'all'}",
+        "url": " http://aiops-database-service/aiops/db-svc/v2/query",
+        "user": "Divya.Khanna@lntinfotech.com"
+    },
+    "type": "api"
+}`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Update Scheduler
+
+```http
+PUT https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/schedule HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/schedule
+```
+
+> Below is the sample response
+
+```json
+success
+```
+
+API to update a scheduled job
+
+### HTTP Request
+`PUT https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/schedule`
+
+### Query Parameters
+`{
+    "data": {
+        "method": "GET",
+        "name": "upsert_business_audit",
+        "params": "{'id':'database_service.dbOperations.upsert_business_audit'}",
+        "schedule": "{'minute': 'every5','hour': 'all', 'day': 'all', 'month': 'all', 'DOW': 'all'}",
+        "scheduler_id": "sched000028",
+        "url": " http://aiops-database-service/aiops/db-svc/v2/query",
+        "user": "Divya.Khanna@lntinfotech.com"
+    },
+    "type": "api"
+}`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Delete Trusted Site
+
+```http
+DELETE https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/trusted-site HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/trusted-site?name=cmdb
+```
+
+> Below is the sample response
+
+```json
+Successfully deleted trusted site
+```
+
+API to delete a trusted site
+
+### HTTP Request
+`DELETE https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/trusted-site`
+
+### Query Parameters
+`name=cmdb`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Get Trusted Site
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/trusted-site HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/trusted-site
+```
+
+> Below is the sample response
+
+```json
+[
+    {
+        "name": "cmdb",
+        "url": "aiops-cmdb-service/aiops/cmdb-svc"
+    },
+    {
+        "name": "database",
+        "url": "aiops-database-service/aiops/db-svc"
+    },
+    {
+        "name": "application",
+        "url": "aiops-application-service/aiops/application-svc"
+    },
+    {
+        "name": "db dev",
+        "url": "mosaic.dev1.lti-mosaic.com/aiops/db-svc"
+    },
+    {
+        "name": "application",
+        "url": "mosaic.dev1.lti-mosaic.com/aiops/application-svc"
+    },
+    {
+        "name": "cmdb dev",
+        "url": "mosaic.dev1.lti-mosaic.com/aiops/cmdb-svc"
+    }
+]
+```
+
+API to fetch all trusted sites
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/trusted-site`
+
+### Query Parameters
+`{
+    "name": "cmdb",
+    "url": "aiops-cmdb-service/aiops/cmdb-svc"
+}`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Add Trusted Site
+
+```http
+POST https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/trusted-site HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/trusted-site
+```
+
+> Below is the sample response
+
+```json
+Succesfully added new trusted site
+```
+
+API to add/insert a trusted site
+
+### HTTP Request
+`POST https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/trusted-site`
+
+### Query Parameters
+`{
+    "name": "cmdb",
+    "url": "aiops-cmdb-service/aiops/cmdb-svc"
+}`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Update Trusted Site
+
+```http
+PUT https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/trusted-site HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/trusted-site
+```
+
+> Below is the sample response
+
+```json
+Successfully updated trusted site
+```
+
+API to update a trusted site
+
+### HTTP Request
+`PUT https://mosaic.ga.lti-mosaic.com/aiops/scheduler-svc/v1/trusted-site`
+
+### Query Parameters
+`{
+    "name": "cmdb",
+    "url": "aiops-cmdb-service/aiops/cmdb-svc"
+}`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+

@@ -1,0 +1,107 @@
+## Service Status Check
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/parser-svc/v1/ping HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/parser-svc/v1/ping
+```
+
+> Below is the sample response
+
+```json
+Pong
+```
+
+API to check service health
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/parser-svc/v1/ping`
+
+### Query Parameters
+`nan`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Check connectivity with database, kafka and other associated services
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/parser-svc/v1/health-check HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/parser-svc/v1/health-check
+```
+
+> Below is the sample response
+
+```json
+{
+    "database": "connected",
+    "kafka": "connected",
+    "services": [
+        "aiops-connector-service/aiops/connector-svc: connected"
+    ],
+    "status": "up"
+}
+```
+
+API to check connectivity with Database,messaging queue (kafka) and associated services
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/parser-svc/v1/health-check`
+
+### Query Parameters
+`nan`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Start Services
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/parser-svc/v1/start-all HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/parser-svc/v1/start-all
+```
+
+> Below is the sample response
+
+```json
+[ "Threads already running for
+ new_relic_str", "Threads already running for snow", "Threads already running for solarwinds", "Threads already running for nagios", "Threads already running for new_relic", "Threads already running for nagios_wh", "Threads already running for solarwinds_wh", "Threads already running for new_relic_wh_app" ]
+```
+
+API to start the threads for all pipelines
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/parser-svc/v1/start-all`
+
+### Query Parameters
+`nan`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+

@@ -1,0 +1,1455 @@
+## Health-Check of service
+
+```http
+GET http://mosaic.dev1.lti-mosaic.com/aiops/application-svc/v1/health-check HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/application-svc/v1/health-check
+```
+
+> Below is the sample response
+
+```json
+{"database": "i can 
+connect to database","services": ["aiops-database-service/aiops/db-svc : connected","aiops-action-service/aiops/action-svc : connected"],"status": "up"}
+```
+
+Checks if database, kafka and associated services are up
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/health-check`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Service Status Check
+
+```http
+GET http://mosaic.dev1.lti-mosaic.com/aiops/application-svc/v1/ping HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/application-svc/v1/ping
+```
+
+> Below is the sample response
+
+```json
+Pong 
+```
+
+Checks if the service is Up 
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ping`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Get Business Criticality
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/business-criticality HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/business-criticality?ci_name=PlutoTV
+```
+
+> Below is the sample response
+
+```json
+{
+    "business_criticality": "2 - Normal",
+    "ci_name": "PlutoTV"
+}
+```
+
+Fetches the business criticality of a Specific CI based on CI name
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/business-criticality`
+
+### Query Parameters
+`ci_name=PlutoTV`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Get Details of CI
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ci-data HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ci-data
+```
+
+> Below is the sample response
+
+```json
+[
+    {
+        "business_day_no_week_month": null,
+        "business_end_time": null,
+        "business_frequency": null,
+        "business_start_time": null,
+        "ci_class": "Application",
+        "maintenance_day_no_week_month": null,
+        "maintenance_end_time": null,
+        "maintenance_frequency": null,
+        "maintenance_month_no": null,
+        "maintenance_start_time": null,
+        "num_of_child": null,
+        "patch_day_no_week_month": null,
+        "patch_end_time": null,
+        "patch_frequency": null,
+        "patch_month_no": null,
+        "patch_start_time": null,
+        "support_group": "MWO-L3",
+        "sys_id": "01381353131113405dd8b9722244b071"
+    },
+    {
+        "business_day_no_week_month": null,
+        "business_end_time": null,
+        "business_frequency": null,
+        "business_start_time": null,
+        "ci_class": "Application",
+        "maintenance_day_no_week_month": null,
+        "maintenance_end_time": null,
+        "maintenance_frequency": null,
+        "maintenance_month_no": null,
+        "maintenance_start_time": null,
+        "num_of_child": null,
+        "patch_day_no_week_month": null,
+        "patch_end_time": null,
+        "patch_frequency": null,
+        "patch_month_no": null,
+        "patch_start_time": null,
+        "support_group": "TreasuryTechSupport",
+        "sys_id": "054392bc5cf47d00d880dab99b7753c5"
+    }
+]
+```
+
+Fetches the deatils of all CIs in the database
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ci-data`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Get detail of any CI
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ci-detail HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ci-detail?ci_name=PlutoTV
+```
+
+> Below is the sample response
+
+```json
+[
+    {
+        "business_day_no_week_month": null,
+        "business_end_time": null,
+        "business_frequency": null,
+        "business_start_time": null,
+        "ci_class": "Application",
+        "maintenance_day_no_week_month": null,
+        "maintenance_end_time": "None",
+        "maintenance_frequency": null,
+        "maintenance_month_no": null,
+        "maintenance_start_time": "None",
+        "num_of_child": null,
+        "patch_day_no_week_month": null,
+        "patch_end_time": "None",
+        "patch_frequency": null,
+        "patch_month_no": null,
+        "patch_start_time": "None",
+        "support_group": "EBIDA",
+        "sys_id": "097c11531b923f0032d7ece03d4bcb66"
+    }
+]
+```
+
+Fetches the detail of a specific CI based on CI name
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ci-detail`
+
+### Query Parameters
+`ci_name=PlutoTV`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Get Ci List
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ci-name HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ci-name
+```
+
+> Below is the sample response
+
+```json
+{
+    "ci_name": [
+        "NewRelic",
+        "IT2",
+        "MTV-Android",
+        "SAP PPC DW",
+        "PeopleSoft-VMN",
+        "Hyperion BPM - DR",
+        "PRISMSP1 - QA",
+        "CP Business Objects - SPARE",
+        "CMT-Android",
+        "IPS B2B site",
+        "Profit Center Portal - SAP",
+        "New Starter DB",
+        "TWS-MSWSCU03",
+        "Xytech MediaPulse Rental",
+        "Nick-Android",
+        "EBAM",
+        "PTS /BTS"
+    ]
+}
+```
+
+Fetches the names of all CIs in the database
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ci-name`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Update CI Health
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ci-health HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ci-health?ci_name=PlutoTV&health=2
+```
+
+> Below is the sample response
+
+```json
+{
+    "Data": "Health of CI PlutoTV updated successfully",
+    "status": "success"
+}
+```
+
+Updates the health for a particular CI based on CI name
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ci-health`
+
+### Query Parameters
+`ci_name=PlutoTV&health=2`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Update Business and Application Health
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/update-business-health HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/update-business-health
+```
+
+> Below is the sample response
+
+```json
+{
+    "status": "Success"
+}
+```
+
+Updates the business and application health
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/update-business-health`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Validate CI Name
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ci-validation HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ci-validation?ci_name=PlutoTV
+```
+
+> Below is the sample response
+
+```json
+{
+    "data": "PlutoTV",
+    "status": "success"
+}
+```
+
+Removes data after space for existing CI
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ci-validation`
+
+### Query Parameters
+`ci_name=PlutoTV`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Get mapping 
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/cmdb-bu-data HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/cmdb-bu-data
+```
+
+> Below is the sample response
+
+```json
+[
+    {
+        "application_service": "Signiant",
+        "business_service": "Content Delivery Services",
+        "city": "others",
+        "country": "others",
+        "hardware": "sig-nyvmsxf-202.ad.viacom.com",
+        "region": "others",
+        "state": "others"
+    },
+    {
+        "application_service": "Fusion - DEV",
+        "business_service": "",
+        "city": "others",
+        "country": "others",
+        "hardware": "exterro-dev-1.mtvn.ad.viacom.com",
+        "region": "others",
+        "state": "others"
+    }
+]
+```
+
+Fetches the mapping between Business unit and application
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/cmdb-bu-data`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Get Cmdb Report
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/cmdb-report HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/cmdb-report
+```
+
+> Below is the sample response
+
+```json
+NA
+```
+
+Fetches the CMDB sanity report
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/cmdb-report`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Get Device Details
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/device-details HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/device-details?page=1&page-size=3
+```
+
+> Below is the sample response
+
+```json
+{
+    "data": {
+        "items": [
+            {
+                "DNS": null,
+                "IP_address_1": null,
+                "IP_address_2": null,
+                "MAC_address": null,
+                "application_name": "NewRelic",
+                "asset_id": 228396,
+                "asset_name": "NewRelic",
+                "asset_status_description": "Installed",
+                "asset_type_description": "Application",
+                "busines_criticality": "2 - Normal",
+                "city": "others",
+                "country": "others",
+                "description": null,
+                "information": null,
+                "last updated": null,
+                "managed_by_group": "",
+                "network_type": null,
+                "owned_by_group": "MWO-L3",
+                "provisioned": null,
+                "region": "others",
+                "support_group": "MWO-L3"
+            },
+            {
+                "DNS": null,
+                "IP_address_1": null,
+                "IP_address_2": null,
+                "MAC_address": null,
+                "application_name": "IT2",
+                "asset_id": 228397,
+                "asset_name": "IT2",
+                "asset_status_description": "Installed",
+                "asset_type_description": "Application",
+                "busines_criticality": "2 - Normal",
+                "city": "others",
+                "country": "others",
+                "description": null,
+                "information": null,
+                "last updated": null,
+                "managed_by_group": "",
+                "network_type": null,
+                "owned_by_group": "CorpFin - CI Owners Group",
+                "provisioned": null,
+                "region": "others",
+                "support_group": "TreasuryTechSupport"
+            },
+            {
+                "DNS": null,
+                "IP_address_1": null,
+                "IP_address_2": null,
+                "MAC_address": null,
+                "application_name": "MTV-Android",
+                "asset_id": 228398,
+                "asset_name": "MTV-Android",
+                "asset_status_description": "Installed",
+                "asset_type_description": "Application",
+                "busines_criticality": "2 - Normal",
+                "city": "others",
+                "country": "others",
+                "description": null,
+                "information": null,
+                "last updated": null,
+                "managed_by_group": "",
+                "network_type": null,
+                "owned_by_group": "",
+                "provisioned": null,
+                "region": "others",
+                "support_group": "MWO-L3"
+            }
+        ]
+    },
+    "meta": {
+        "page": 1,
+        "per_page": 3,
+        "total_items": 32019,
+        "total_pages": 10674
+    }
+}
+```
+
+Fetches details of devices for provided pages
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/device-details`
+
+### Query Parameters
+`page=1&page-size=3`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Extract Snow Data
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/extract-from-snow/channel-id/{channel_id} HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+NA
+```
+
+> Below is the sample response
+
+```json
+NA
+```
+
+extract cmdb data from snow API
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/extract-from-snow/channel-id/`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Get Relationship Data
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/graph-data HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/graph-data
+```
+
+> Below is the sample response
+
+```json
+{
+    "related_asset_id_1": {
+        "0": "it2",
+        "1": "it2",
+        "10": "sap-ppc-basis - dr",
+        "11": "prismsp1 - qa",
+        "2": "it2",
+        "3": "it2",
+        "4": "sap ppc dw",
+        "5": "sap ppc dw",
+        "6": "peoplesoft-vmn",
+        "7": "peoplesoft-vmn",
+        "8": "peoplesoft-vmn",
+        "9": "peoplesoft-vmn"
+    },
+    "related_asset_id_2": {
+        "0": "it2-sqlprd2.viacom_corp.ad.viacom.com",
+        "1": "it2-jobprd2.viacom_corp.ad.viacom.com",
+        "10": "nxsdgr01",
+        "11": "nxdbsd07",
+        "2": "it2-appprd2.viacom_corp.ad.viacom.com",
+        "3": "it2-webprd2.viacom_corp.ad.viacom.com",
+        "4": "microstrategy bi server",
+        "5": "nxtdcp",
+        "6": "psprpt03.mtvn.ad.viacom.com",
+        "7": "clockprd1.viacom_corp.ad.viacom.com",
+        "8": "clockprd2.viacom_corp.ad.viacom.com",
+        "9": "hrprdps_stndby"
+    }
+}
+```
+
+Get CI relationship data for networkx graph
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/graph-data`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Get Asset Location
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/location-data HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/location-data
+```
+
+> Below is the sample response
+
+```json
+[
+    {
+        "ci_name": "NewRelic",
+        "city": "others",
+        "country": "others",
+        "region": "others",
+        "state": "others"
+    },
+    {
+        "ci_name": "IT2",
+        "city": "others",
+        "country": "others",
+        "region": "others",
+        "state": "others"
+    },
+    {
+        "ci_name": "MTV-Android",
+        "city": "others",
+        "country": "others",
+        "region": "others",
+        "state": "others"
+    },
+    {
+        "ci_name": "SAP PPC DW",
+        "city": "others",
+        "country": "others",
+        "region": "others",
+        "state": "others"
+    }
+]
+```
+
+Fetches the location of assets
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/location-data`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Get Network Graph
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/network-data HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/network-data?businessUnit_Name=Broadcast%20Services&application_service=ELOG
+```
+
+> Below is the sample response
+
+```json
+{
+    "data": [
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "cmdb_ci": "filer-east01-e05",
+                                            "health": 1,
+                                            "level": 4,
+                                            "name": "filer-east01-e05",
+                                            "sys_class_name": "Mass Storage Device"
+                                        },
+                                        {
+                                            "cmdb_ci": "filer-east01-e06",
+                                            "health": 1,
+                                            "level": 4,
+                                            "name": "filer-east01-e06",
+                                            "sys_class_name": "Mass Storage Device"
+                                        },
+                                        {
+                                            "cmdb_ci": "filer-east01-e08",
+                                            "health": 1,
+                                            "level": 4,
+                                            "name": "filer-east01-e08",
+                                            "sys_class_name": "Mass Storage Device"
+                                        },
+                                        {
+                                            "cmdb_ci": "filer-east01-e09",
+                                            "health": 1,
+                                            "level": 4,
+                                            "name": "filer-east01-e09",
+                                            "sys_class_name": "Mass Storage Device"
+                                        },
+                                        {
+                                            "cmdb_ci": "filer-east01-e10",
+                                            "health": 1,
+                                            "level": 4,
+                                            "name": "filer-east01-e10",
+                                            "sys_class_name": "Mass Storage Device"
+                                        },
+                                        {
+                                            "cmdb_ci": "filer-east01.mtvn.ad.viacom.com",
+                                            "health": 1,
+                                            "level": 3,
+                                            "name": "filer-east01.mtvn.ad.viacom.com",
+                                            "sys_class_name": "Mass Storage Device"
+                                        },
+                                        {
+                                            "cmdb_ci": "filer-east01-e11",
+                                            "health": 3,
+                                            "level": 4,
+                                            "name": "filer-east01-e11",
+                                            "sys_class_name": "Mass Storage Device"
+                                        }
+                                    ],
+                                    "cmdb_ci": "filer-east01-c01.viacom.com",
+                                    "health": 1,
+                                    "level": 4,
+                                    "name": "filer-east01-c01.viacom.com",
+                                    "sys_class_name": "Mass Storage Device"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "cmdb_ci": "filer-east01-e05",
+                                            "health": 1,
+                                            "level": 4,
+                                            "name": "filer-east01-e05",
+                                            "sys_class_name": "Mass Storage Device"
+                                        },
+                                        {
+                                            "cmdb_ci": "filer-east01-e06",
+                                            "health": 1,
+                                            "level": 4,
+                                            "name": "filer-east01-e06",
+                                            "sys_class_name": "Mass Storage Device"
+                                        },
+                                        {
+                                            "cmdb_ci": "filer-east01-e08",
+                                            "health": 1,
+                                            "level": 4,
+                                            "name": "filer-east01-e08",
+                                            "sys_class_name": "Mass Storage Device"
+                                        },
+                                        {
+                                            "cmdb_ci": "filer-east01-e09",
+                                            "health": 1,
+                                            "level": 4,
+                                            "name": "filer-east01-e09",
+                                            "sys_class_name": "Mass Storage Device"
+                                        },
+                                        {
+                                            "cmdb_ci": "filer-east01-e10",
+                                            "health": 1,
+                                            "level": 4,
+                                            "name": "filer-east01-e10",
+                                            "sys_class_name": "Mass Storage Device"
+                                        },
+                                        {
+                                            "cmdb_ci": "filer-east01.mtvn.ad.viacom.com",
+                                            "health": 1,
+                                            "level": 3,
+                                            "name": "filer-east01.mtvn.ad.viacom.com",
+                                            "sys_class_name": "Mass Storage Device"
+                                        },
+                                        {
+                                            "cmdb_ci": "filer-east01-e11",
+                                            "health": 3,
+                                            "level": 4,
+                                            "name": "filer-east01-e11",
+                                            "sys_class_name": "Mass Storage Device"
+                                        }
+                                    ],
+                                    "cmdb_ci": "filer-east01-c02.viacom.com",
+                                    "health": 1,
+                                    "level": 4,
+                                    "name": "filer-east01-c02.viacom.com",
+                                    "sys_class_name": "Mass Storage Device"
+                                },
+                                {
+                                    "cmdb_ci": "filer-east01-e01",
+                                    "health": 1,
+                                    "level": 4,
+                                    "name": "filer-east01-e01",
+                                    "sys_class_name": "Mass Storage Device"
+                                },
+                                {
+                                    "cmdb_ci": "filer-east01-e02",
+                                    "health": 1,
+                                    "level": 4,
+                                    "name": "filer-east01-e02",
+                                    "sys_class_name": "Mass Storage Device"
+                                },
+                                {
+                                    "cmdb_ci": "filer-east01-e03",
+                                    "health": 1,
+                                    "level": 4,
+                                    "name": "filer-east01-e03",
+                                    "sys_class_name": "Mass Storage Device"
+                                },
+                                {
+                                    "cmdb_ci": "filer-east01-e04",
+                                    "health": 1,
+                                    "level": 4,
+                                    "name": "filer-east01-e04",
+                                    "sys_class_name": "Mass Storage Device"
+                                },
+                                {
+                                    "cmdb_ci": "filer-east01-e05",
+                                    "health": 1,
+                                    "level": 4,
+                                    "name": "filer-east01-e05",
+                                    "sys_class_name": "Mass Storage Device"
+                                },
+                                {
+                                    "cmdb_ci": "filer-east01-e06",
+                                    "health": 1,
+                                    "level": 4,
+                                    "name": "filer-east01-e06",
+                                    "sys_class_name": "Mass Storage Device"
+                                },
+                                {
+                                    "cmdb_ci": "filer-east01-e07",
+                                    "health": 1,
+                                    "level": 4,
+                                    "name": "filer-east01-e07",
+                                    "sys_class_name": "Mass Storage Device"
+                                },
+                                {
+                                    "cmdb_ci": "filer-east01-e08",
+                                    "health": 1,
+                                    "level": 4,
+                                    "name": "filer-east01-e08",
+                                    "sys_class_name": "Mass Storage Device"
+                                },
+                                {
+                                    "cmdb_ci": "filer-east01-e09",
+                                    "health": 1,
+                                    "level": 4,
+                                    "name": "filer-east01-e09",
+                                    "sys_class_name": "Mass Storage Device"
+                                },
+                                {
+                                    "cmdb_ci": "filer-east01-e10",
+                                    "health": 1,
+                                    "level": 4,
+                                    "name": "filer-east01-e10",
+                                    "sys_class_name": "Mass Storage Device"
+                                },
+                                {
+                                    "cmdb_ci": "filer-east01-e12",
+                                    "health": 1,
+                                    "level": 4,
+                                    "name": "filer-east01-e12",
+                                    "sys_class_name": "Mass Storage Device"
+                                },
+                                {
+                                    "cmdb_ci": "filer-east01-e13",
+                                    "health": 1,
+                                    "level": 4,
+                                    "name": "filer-east01-e13",
+                                    "sys_class_name": "Mass Storage Device"
+                                },
+                                {
+                                    "cmdb_ci": "filer-east01-e11",
+                                    "health": 3,
+                                    "level": 4,
+                                    "name": "filer-east01-e11",
+                                    "sys_class_name": "Mass Storage Device"
+                                }
+                            ],
+                            "cmdb_ci": "filer-east01.mtvn.ad.viacom.com",
+                            "health": 1,
+                            "level": 3,
+                            "name": "filer-east01.mtvn.ad.viacom.com",
+                            "sys_class_name": "Mass Storage Device"
+                        }
+                    ],
+                    "cmdb_ci": "CIFS-dsg-svm-e01-Programs",
+                    "health": 1,
+                    "level": 2,
+                    "name": "CIFS-dsg-svm-e01-Programs",
+                    "sys_class_name": "CIFS File system"
+                },
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "cmdb_ci": "NOC-RM206-Core Interface",
+                                                    "health": 1,
+                                                    "level": 5,
+                                                    "name": "NOC-RM206-Core Interface",
+                                                    "sys_class_name": "Computer Room"
+                                                }
+                                            ],
+                                            "cmdb_ci": "NOC-RM206-RK262",
+                                            "health": 1,
+                                            "level": 4,
+                                            "name": "NOC-RM206-RK262",
+                                            "sys_class_name": "Rack"
+                                        }
+                                    ],
+                                    "cmdb_ci": "ASDBMD3200",
+                                    "health": 1,
+                                    "level": 4,
+                                    "name": "ASDBMD3200",
+                                    "sys_class_name": "Mass Storage Device"
+                                },
+                                {
+                                    "cmdb_ci": "NOC-RM206-RK262",
+                                    "health": 1,
+                                    "level": 4,
+                                    "name": "NOC-RM206-RK262",
+                                    "sys_class_name": "Rack"
+                                }
+                            ],
+                            "cmdb_ci": "COR262-10-ASDB1.mtvn.ad.viacom.com",
+                            "health": 1,
+                            "level": 3,
+                            "name": "COR262-10-ASDB1.mtvn.ad.viacom.com",
+                            "sys_class_name": "Windows Server"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "cmdb_ci": "ASDBMD3200",
+                                            "health": 1,
+                                            "level": 4,
+                                            "name": "ASDBMD3200",
+                                            "sys_class_name": "Mass Storage Device"
+                                        },
+                                        {
+                                            "cmdb_ci": "NOC-RM206-RK262",
+                                            "health": 1,
+                                            "level": 4,
+                                            "name": "NOC-RM206-RK262",
+                                            "sys_class_name": "Rack"
+                                        }
+                                    ],
+                                    "cmdb_ci": "COR262-03-ASDB2.mtvn.ad.viacom.com",
+                                    "health": 1,
+                                    "level": 4,
+                                    "name": "COR262-03-ASDB2.mtvn.ad.viacom.com",
+                                    "sys_class_name": "Windows Server"
+                                },
+                                {
+                                    "cmdb_ci": "COR262-10-ASDB1.mtvn.ad.viacom.com",
+                                    "health": 1,
+                                    "level": 3,
+                                    "name": "COR262-10-ASDB1.mtvn.ad.viacom.com",
+                                    "sys_class_name": "Windows Server"
+                                }
+                            ],
+                            "cmdb_ci": "cor262asdb.mtvn.ad.viacom.com",
+                            "health": 1,
+                            "level": 3,
+                            "name": "cor262asdb.mtvn.ad.viacom.com",
+                            "sys_class_name": "Windows Cluster"
+                        }
+                    ],
+                    "cmdb_ci": "NOCLIVEASDB",
+                    "health": 1,
+                    "level": 2,
+                    "name": "NOCLIVEASDB",
+                    "sys_class_name": "MSFT SQL Instance"
+                },
+                {
+                    "children": [
+                        {
+                            "cmdb_ci": "noclivesql01.mtvn.ad.viacom.com",
+                            "health": 1,
+                            "level": 3,
+                            "name": "noclivesql01.mtvn.ad.viacom.com",
+                            "sys_class_name": "Windows Server"
+                        }
+                    ],
+                    "cmdb_ci": "NOCLIVESQL01",
+                    "health": 1,
+                    "level": 2,
+                    "name": "NOCLIVESQL01",
+                    "sys_class_name": "MSFT SQL Instance"
+                },
+                {
+                    "cmdb_ci": "progwebprodadm.mtvn.ad.viacom.com",
+                    "health": 1,
+                    "level": 2,
+                    "name": "progwebprodadm.mtvn.ad.viacom.com",
+                    "sys_class_name": "Windows Server"
+                },
+                {
+                    "cmdb_ci": "progwebprod.dmz.viacom.com",
+                    "health": 1,
+                    "level": 2,
+                    "name": "progwebprod.dmz.viacom.com",
+                    "sys_class_name": "Windows Server"
+                },
+                {
+                    "children": [
+                        {
+                            "cmdb_ci": "CIFS-dsg-svm-e01-Programs",
+                            "health": 1,
+                            "level": 2,
+                            "name": "CIFS-dsg-svm-e01-Programs",
+                            "sys_class_name": "CIFS File system"
+                        },
+                        {
+                            "cmdb_ci": "NOCLIVEASDB",
+                            "health": 1,
+                            "level": 2,
+                            "name": "NOCLIVEASDB",
+                            "sys_class_name": "MSFT SQL Instance"
+                        },
+                        {
+                            "cmdb_ci": "progwebprodadm.mtvn.ad.viacom.com",
+                            "health": 1,
+                            "level": 2,
+                            "name": "progwebprodadm.mtvn.ad.viacom.com",
+                            "sys_class_name": "Windows Server"
+                        },
+                        {
+                            "cmdb_ci": "ELOG",
+                            "health": 3,
+                            "level": 1,
+                            "name": "ELOG",
+                            "sys_class_name": "Application"
+                        }
+                    ],
+                    "cmdb_ci": "PTS - Prod",
+                    "health": 1,
+                    "level": 2,
+                    "name": "PTS - Prod",
+                    "sys_class_name": "Application"
+                }
+            ],
+            "health": 2,
+            "level": 1,
+            "name": "ELOG"
+        }
+    ],
+    "status": "success"
+}
+```
+
+Fetches the network graph for an application service
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/network-data`
+
+### Query Parameters
+`businessUnit_Name=Broadcast%20Services&application_service=ELOG`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Schedule Jobs
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/schedule HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/schedule
+```
+
+> Below is the sample response
+
+```json
+[
+    "job_1(refresh_views) started !!!",
+    "job_2(upsert_business_audit) started !!!",
+    "job_3(update_alr_inc_count) started !!!",
+    "job_4(update_application_health) started !!!"
+]
+```
+
+Schedules the jobs that is to be done
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/schedule`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Update Alert and Incident Count for Health dashboard
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/update-alr-inc-count HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/update-alr-inc-count
+```
+
+> Below is the sample response
+
+```json
+{
+    "status": "success"
+}
+```
+
+Updates alert count and incident count for Health Dashboard
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/update-alr-inc-count`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Fetch Ci Health Details
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ci-health-details HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.dev.lti-mosaic.com/aiops/cmdb-svc/v1/ci-health-details?ci_name=chumchum.ad.viacom.com
+```
+
+> Below is the sample response
+
+```json
+{
+    "data": {
+        "ci_name": "chumchum.ad.viacom.com",
+        "generated_at": 1,
+        "is_clustered": "Yes",
+        "level": 3
+    },
+    "status": "success"
+}
+```
+
+fetch ci health details
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ci-health-details`
+
+### Query Parameters
+`ci-health-details?ci_name=chumchum.ad.viacom.com`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Ci-Parent-Child-Details
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ci-parent-child-details HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.dev.lti-mosaic.com/aiops/cmdb-svc/v1/ci-parent-child-details?ci_name=chumchum.ad.viacom.com
+```
+
+> Below is the sample response
+
+```json
+{
+    "data": {
+        "parent_child": [
+            {
+                "child_cnt": 2,
+                "child_health": [
+                    1
+                ],
+                "level": 2,
+                "parent": "fs.viacomcloud.com - Internal",
+                "parent_health": 1,
+                "sys_class_name": "VIP"
+            }
+        ]
+    },
+    "status": "success"
+}
+```
+
+parent and child details
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ci-parent-child-details`
+
+### Query Parameters
+`ci-parent-child-details?ci_name=chumchum.ad.viacom.com`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Ci Weightage Health
+
+```http
+PUT https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ci-weightage-health HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ci-weightage-health
+```
+
+> Below is the sample response
+
+```json
+{
+    "message": "Health, weightage of CIs updated successfully",
+    "status": "success"
+}
+```
+
+Update weightage for the CI
+
+### HTTP Request
+`PUT https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ci-weightage-health`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Ci List Support
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ci-list-support/support-group/<support_group> HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.dev.lti-mosaic.com/aiops/cmdb-svc/v1/ci-list-support/support-group/MWO-L3
+```
+
+> Below is the sample response
+
+```json
+[
+    {
+        "ci_name": "Multiplatform Web Operations",
+        "sys_id": "9955587235503d009a8eede77b5582c6"
+    },
+    {
+        "ci_name": "NewRelic",
+        "sys_id": "01381353131113405dd8b9722244b071"
+    },
+    {
+        "ci_name": "MTV-Android",
+        "sys_id": "057c64731389c7005dd8b9722244b07b"
+    },
+    {
+        "ci_name": "CMT-Android",
+        "sys_id": "097c64731389c7005dd8b9722244b07a"
+    }
+]
+```
+
+CI list support group 
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ci-list-support/support-group/<support_group>`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Calculate Ci Distance
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/calculate-cidistance/ci-1/<ci_1>/ci-2/<ci_2>/distance-type/<distance_type> HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/calculate-cidistance/ci-1/{ci_1}/ci-2/{ci_2}/distance-type/{distance_type}?ci_1=fs.viacomcloud.com%20-%20Internal&ci_2=chumchum.ad.viacom.com&distance_type=direct
+```
+
+> Below is the sample response
+
+```json
+{
+    "ci_distance": "Got error while calculating CI distance Node fs.viacomcloud.com - Internal not reachable from chumchum.ad.viacom.com"
+}
+```
+
+Calculate ci distance between two CIs
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/calculate-cidistance/ci-1/<ci_1>/ci-2/<ci_2>/distance-type/<distance_type>`
+
+### Query Parameters
+`?ci_1=fs.viacomcloud.com%20-%20Internal&ci_2=chumchum.ad.viacom.com&distance_type=direct`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+

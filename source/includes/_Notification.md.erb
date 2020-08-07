@@ -1,6 +1,9 @@
 # Notification Service
 
-## service status check
+Notification Service enables you to send alert notifications to users for events based on their state.
+It gives you privilege to send attachments (txt, jpeg, excels) along with pre-defined templates configured in database.
+
+## Service Status Check
 
 ```http
 GET https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/ping HTTP/1.1
@@ -17,7 +20,7 @@ https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/ping
 Pong
 ```
 
-api to check service health
+API to check service health
 
 ### HTTP Request
 `GET https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/ping`
@@ -27,13 +30,13 @@ api to check service health
 
 Metadata | Yes/No
 --------- | -------
-Authentication | Yes
+Authentication | No
 Pagination | No
 Offset | No
 Response Profile | No
 
 
-## check database connections
+## Check Database Connections
 
 ```http
 GET https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/health-check HTTP/1.1
@@ -52,7 +55,7 @@ https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/health-check
 }
 ```
 
-api to check connectivity with database
+API to check connectivity with Database
 
 ### HTTP Request
 `GET https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/health-check`
@@ -62,13 +65,13 @@ api to check connectivity with database
 
 Metadata | Yes/No
 --------- | -------
-Authentication | Yes
+Authentication | No
 Pagination | No
 Offset | No
 Response Profile | No
 
 
-## insert template
+## Insert Template
 
 ```http
 POST https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/template HTTP/1.1
@@ -85,7 +88,7 @@ https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/template
 "Template inserted successfully"
 ```
 
-api to insert new template for notification
+API to insert new template for notification
 
 ### HTTP Request
 `POST https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/template`
@@ -103,13 +106,13 @@ api to insert new template for notification
 
 Metadata | Yes/No
 --------- | -------
-Authentication | Yes
+Authentication | No
 Pagination | No
 Offset | No
 Response Profile | No
 
 
-## get template
+## Get Template
 
 ```http
 GET https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/template HTTP/1.1
@@ -139,7 +142,7 @@ https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/template
 ]
 ```
 
-api to fetch existing template from database
+API to fetch existing template from database
 
 ### HTTP Request
 `GET https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/template`
@@ -149,13 +152,79 @@ api to fetch existing template from database
 
 Metadata | Yes/No
 --------- | -------
-Authentication | Yes
+Authentication | No
 Pagination | No
 Offset | No
 Response Profile | No
 
 
-## insert config
+## Update Template
+
+```http
+PUT https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/template HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/template
+```
+
+> Below is the sample response
+
+```json
+"Template updated successfully"
+```
+
+API to update existing template in database
+
+### HTTP Request
+`PUT https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/template`
+
+### Query Parameters
+`{"content":"body":"testing"},"template_id": "test"}`
+
+Metadata | Yes/No
+--------- | -------
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Delete Template
+
+```http
+DELETE https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/template HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/template
+```
+
+> Below is the sample response
+
+```json
+"Template deleted successfully"
+```
+
+API to delete existing template from database
+
+### HTTP Request
+`DELETE https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/template`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No
+--------- | -------
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Insert Config
 
 ```http
 POST https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/config HTTP/1.1
@@ -172,7 +241,7 @@ https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/config
 "config inserted successfully"
 ```
 
-api to insert new configuration details for notification
+API to insert new configuration details for notification
 
 ### HTTP Request
 `POST https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/config`
@@ -192,13 +261,132 @@ api to insert new configuration details for notification
 
 Metadata | Yes/No
 --------- | -------
-Authentication | Yes
+Authentication | No
 Pagination | No
 Offset | No
 Response Profile | No
 
 
-## notification
+## Get Config
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/config HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/config
+```
+
+> Below is the sample response
+
+```json
+[
+    {
+        "config_content": {
+            "from_": "useremail",
+            "host": "hostaddress",
+            "password": "password",
+            "port": 0
+        },
+        "identifier": "email",
+        "provider": "email",
+        "status": true
+    }
+]
+```
+
+API to fetch existing configuration details from database
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/config`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No
+--------- | -------
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Update Config
+
+```http
+PUT https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/config HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/config
+```
+
+> Below is the sample response
+
+```json
+"config updated successfully"
+```
+
+API to update existing configuration details in database
+
+### HTTP Request
+`PUT https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/config`
+
+### Query Parameters
+`{
+    "config_id": "email",
+    "configuration": {
+        "from_": "fromaddress",
+        "host": "hostaddress",
+        "password": "password",
+        "port": 0
+    }
+}`
+
+Metadata | Yes/No
+--------- | -------
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Delete Config
+
+```http
+DELETE https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/config HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/config
+```
+
+> Below is the sample response
+
+```json
+"config deleted successfully"
+```
+
+API to delete existing configuration details from database
+
+### HTTP Request
+`DELETE https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/config`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No
+--------- | -------
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Notification
 
 ```http
 POST https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/notification/<provider> HTTP/1.1
@@ -218,7 +406,7 @@ https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/notification/email
 }
 ```
 
-api to send notification to configured users
+API to send notification to configured users
 
 ### HTTP Request
 `POST https://mosaic.ga.lti-mosaic.com/aiops/notification-svc/v1/notification`
@@ -254,7 +442,7 @@ api to send notification to configured users
 
 Metadata | Yes/No
 --------- | -------
-Authentication | Yes
+Authentication | No
 Pagination | No
 Offset | No
 Response Profile | No

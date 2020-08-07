@@ -1,0 +1,167 @@
+## Service Status Check
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/db-svc/v1/ping HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/db-svc/v1/ping
+```
+
+> Below is the sample response
+
+```json
+Pong
+```
+
+Checks if the service is Up 
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/db-svc/v1/ping`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Check Database Connections
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/db-svc/v1/healthcheck HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/db-svc/v1/healthcheck
+```
+
+> Below is the sample response
+
+```json
+{
+    "status": "up"
+}
+```
+
+Checks if database, kafka and associated services are up
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/db-svc/v1/healthcheck`
+
+### Query Parameters
+`NA`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Fetch
+
+```http
+GET https://mosaic.ga.lti-mosaic.com/aiops/db-svc/v2/query/ HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/db-svc/v2/query/?id=application_service.incident.load_incident_list&params=%7B'start'%3A%200%2C%20'page_size'%3A%202%2C%20'from_date'%3A%20%221566398332%22%2C'to_date'%3A%20%221579617536%22%7D
+```
+
+> Below is the sample response
+
+```json
+{'data': [('INC0026044', 1579617340, 'admin', 1579617340, None, 'Inquiry / Help', None, None, None, 'P5', None, 1579617340, 'Minor', None, 'Nagios|Hosstchecck Ping check|CDMi|Virtual Memory usage on USTRNTPD334 is currently 96 - CRITICAL\n', 'Opened', None, [{'sys_created_on': 1579617340, 'value': 'Auto-Ticketed by AIOPS', 'sys_updated_by': 'System Administrator'}], None, 'Low', '3 - Low', 0), ('INC0026043', 1579617340, 'admin', 1579617340, None, 'Inquiry / Help', None, None, None, 'P5', None, 1579617340, 'Minor', None, 'Nagios|Hosstchecck Ping check|CDMi|Virtual Memory usage on USTRNTPD334 is currently 96 - CRITICAL\n', 'Opened', None, [{'sys_created_on': 1579617340, 'value': 'Auto-Ticketed by AIOPS', 'sys_updated_by': 'System Administrator'}], None, 'Low', '3 - Low', 0)], 'status': 'Success'}
+```
+
+Fetches the data based on query
+
+### HTTP Request
+`GET https://mosaic.ga.lti-mosaic.com/aiops/db-svc/v2/query/`
+
+### Query Parameters
+`id=application_service.incident.load_incident_list&params=%7B'start'%3A%200%2C%20'page_size'%3A%202%2C%20'from_date'%3A%20%221566398332%22%2C'to_date'%3A%20%221579617536%22%7D' `
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Insert
+
+```http
+POST https://mosaic.ga.lti-mosaic.com/aiops/db-svc/v2/query/ HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/db-svc/v2/query/
+```
+
+> Below is the sample response
+
+```json
+{'data': 'Audit data inserted successfully', 'status': 'Success'}
+```
+
+Inserts data based on query
+
+### HTTP Request
+`POST https://mosaic.ga.lti-mosaic.com/aiops/db-svc/v2/query/`
+
+### Query Parameters
+`{ \ "id": "parser_service.parser.insert_audit_data", \ "params": { \ "incident" : "abc", \ "date" : "1568013118", \ "audit_data" : {"assigned_to" : "abc.lntinfotech.com", "incident_state" : "In Progress"} \ } \ } \`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
+## Update
+
+```http
+PUT https://mosaic.ga.lti-mosaic.com/aiops/db-svc/v2/query/ HTTP/1.1
+```
+> Below is the sample request body
+
+```json
+https://mosaic.ga.lti-mosaic.com/aiops/db-svc/v2/query/
+```
+
+> Below is the sample response
+
+```json
+{'data': 'Successfully ack/cleared alert', 'status': 'Success'}
+```
+
+Updates the data based on query
+
+### HTTP Request
+`PUT https://mosaic.ga.lti-mosaic.com/aiops/db-svc/v2/query/`
+
+### Query Parameters
+`{ \ "id": "application_service.alerts.ack_clear_alert", \ "params": { \ "id": "0002816806", \ "clear_reason": "Clear", \ "cleared_by": "abc.lntinfotech.com" \ } \ } \`
+
+Metadata | Yes/No 
+--------- | ------- 
+Authentication | No
+Pagination | No
+Offset | No
+Response Profile | No
+
+
