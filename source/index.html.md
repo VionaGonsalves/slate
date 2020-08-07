@@ -5,9 +5,11 @@ title: AIOPS
 includes:
   - Action
   - DB
+  - CMDB
   - Connector
   - Notification
   - Parser
+  - Scheduler
 
 search: true
 

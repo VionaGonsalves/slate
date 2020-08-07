@@ -1,3 +1,7 @@
+#Database Service
+
+Database service, as the name suggests provides all the database services (Fetch, Insert, Update) to its other counterpart services. It behaves as a layer between all the other services and the database.
+
 ## Service Status Check
 
 ```http
@@ -15,7 +19,7 @@ https://mosaic.ga.lti-mosaic.com/aiops/db-svc/v1/ping
 Pong
 ```
 
-Checks if the service is Up 
+Checks if the service is Up
 
 ### HTTP Request
 `GET https://mosaic.ga.lti-mosaic.com/aiops/db-svc/v1/ping`
@@ -23,8 +27,8 @@ Checks if the service is Up
 ### Query Parameters
 `NA`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -58,8 +62,8 @@ Checks if database, kafka and associated services are up
 ### Query Parameters
 `NA`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -91,8 +95,8 @@ Fetches the data based on query
 ### Query Parameters
 `id=application_service.incident.load_incident_list&params=%7B'start'%3A%200%2C%20'page_size'%3A%202%2C%20'from_date'%3A%20%221566398332%22%2C'to_date'%3A%20%221579617536%22%7D' `
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -124,8 +128,8 @@ Inserts data based on query
 ### Query Parameters
 `{ \ "id": "parser_service.parser.insert_audit_data", \ "params": { \ "incident" : "abc", \ "date" : "1568013118", \ "audit_data" : {"assigned_to" : "abc.lntinfotech.com", "incident_state" : "In Progress"} \ } \ } \`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -157,8 +161,8 @@ Updates the data based on query
 ### Query Parameters
 `{ \ "id": "application_service.alerts.ack_clear_alert", \ "params": { \ "id": "0002816806", \ "clear_reason": "Clear", \ "cleared_by": "abc.lntinfotech.com" \ } \ } \`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No

@@ -1,3 +1,7 @@
+#Action Service
+
+Action Service is a microservice framework which interact with other microservices to perform certain actions like creating or updating tickets in ITSM and ITPA tools.
+
 ## Service Status Check
 
 ```http
@@ -15,7 +19,7 @@ https://mosaic.ga.lti-mosaic.com/aiops/action-svc/v1/ping
 Pong
 ```
 
-Checks if the service is Up 
+Checks if the service is Up
 
 ### HTTP Request
 `GET https://mosaic.ga.lti-mosaic.com/aiops/action-svc/v1/ping`
@@ -23,8 +27,8 @@ Checks if the service is Up
 ### Query Parameters
 `NA`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -63,8 +67,8 @@ Checks if database, kafka and associated services are up
 ### Query Parameters
 `NA`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -129,8 +133,8 @@ Performs a specific action based on action-name
     "user_email": "mustafa.neemuchwala%40lntinfotech.com"
 }`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No

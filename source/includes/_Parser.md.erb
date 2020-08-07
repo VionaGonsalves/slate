@@ -1,3 +1,7 @@
+#Parser Service
+
+Parser service is a microservice framework that parses data in a defined format and stores it in database. The data can be in various input formats such as string or json which gets parsed into a standard format (key, value). Along with data parsing, enrichment of data such as date-time standardization, field conversion, format conversion is also done. After successfully parsing of data, parsed data gets stored in a database as well as produced into a messaging queue (Kafka).
+
 ## Service Status Check
 
 ```http
@@ -23,8 +27,8 @@ API to check service health
 ### Query Parameters
 `nan`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -63,8 +67,8 @@ API to check connectivity with Database,messaging queue (kafka) and associated s
 ### Query Parameters
 `nan`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -97,8 +101,8 @@ API to start the threads for all pipelines
 ### Query Parameters
 `nan`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No

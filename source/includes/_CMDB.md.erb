@@ -1,3 +1,5 @@
+#CMDB Service
+
 ## Health-Check of service
 
 ```http
@@ -12,7 +14,7 @@ https://mosaic.ga.lti-mosaic.com/aiops/application-svc/v1/health-check
 > Below is the sample response
 
 ```json
-{"database": "i can 
+{"database": "i can
 connect to database","services": ["aiops-database-service/aiops/db-svc : connected","aiops-action-service/aiops/action-svc : connected"],"status": "up"}
 ```
 
@@ -24,8 +26,8 @@ Checks if database, kafka and associated services are up
 ### Query Parameters
 `NA`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -46,10 +48,10 @@ https://mosaic.ga.lti-mosaic.com/aiops/application-svc/v1/ping
 > Below is the sample response
 
 ```json
-Pong 
+Pong
 ```
 
-Checks if the service is Up 
+Checks if the service is Up
 
 ### HTTP Request
 `GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ping`
@@ -57,8 +59,8 @@ Checks if the service is Up
 ### Query Parameters
 `NA`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -93,8 +95,8 @@ Fetches the business criticality of a Specific CI based on CI name
 ### Query Parameters
 `ci_name=PlutoTV`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -167,8 +169,8 @@ Fetches the deatils of all CIs in the database
 ### Query Parameters
 `NA`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -221,8 +223,8 @@ Fetches the detail of a specific CI based on CI name
 ### Query Parameters
 `ci_name=PlutoTV`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -274,8 +276,8 @@ Fetches the names of all CIs in the database
 ### Query Parameters
 `NA`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -310,8 +312,8 @@ Updates the health for a particular CI based on CI name
 ### Query Parameters
 `ci_name=PlutoTV&health=2`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -345,8 +347,8 @@ Updates the business and application health
 ### Query Parameters
 `NA`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -381,15 +383,15 @@ Removes data after space for existing CI
 ### Query Parameters
 `ci_name=PlutoTV`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
 Response Profile | No
 
 
-## Get mapping 
+## Get mapping
 
 ```http
 GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/cmdb-bu-data HTTP/1.1
@@ -433,8 +435,8 @@ Fetches the mapping between Business unit and application
 ### Query Parameters
 `NA`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -466,8 +468,8 @@ Fetches the CMDB sanity report
 ### Query Parameters
 `NA`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -579,8 +581,8 @@ Fetches details of devices for provided pages
 ### Query Parameters
 `page=1&page-size=3`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -612,8 +614,8 @@ extract cmdb data from snow API
 ### Query Parameters
 `NA`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -674,8 +676,8 @@ Get CI relationship data for networkx graph
 ### Query Parameters
 `NA`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -736,8 +738,8 @@ Fetches the location of assets
 ### Query Parameters
 `NA`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -1161,8 +1163,8 @@ Fetches the network graph for an application service
 ### Query Parameters
 `businessUnit_Name=Broadcast%20Services&application_service=ELOG`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -1199,8 +1201,8 @@ Schedules the jobs that is to be done
 ### Query Parameters
 `NA`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -1234,8 +1236,8 @@ Updates alert count and incident count for Health Dashboard
 ### Query Parameters
 `NA`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -1275,8 +1277,8 @@ fetch ci health details
 ### Query Parameters
 `ci-health-details?ci_name=chumchum.ad.viacom.com`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -1324,8 +1326,8 @@ parent and child details
 ### Query Parameters
 `ci-parent-child-details?ci_name=chumchum.ad.viacom.com`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -1360,8 +1362,8 @@ Update weightage for the CI
 ### Query Parameters
 `NA`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -1402,7 +1404,7 @@ https://mosaic.dev.lti-mosaic.com/aiops/cmdb-svc/v1/ci-list-support/support-grou
 ]
 ```
 
-CI list support group 
+CI list support group
 
 ### HTTP Request
 `GET https://mosaic.ga.lti-mosaic.com/aiops/cmdb-svc/v1/ci-list-support/support-group/<support_group>`
@@ -1410,8 +1412,8 @@ CI list support group
 ### Query Parameters
 `NA`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
@@ -1445,8 +1447,8 @@ Calculate ci distance between two CIs
 ### Query Parameters
 `?ci_1=fs.viacomcloud.com%20-%20Internal&ci_2=chumchum.ad.viacom.com&distance_type=direct`
 
-Metadata | Yes/No 
---------- | ------- 
+Metadata | Yes/No
+--------- | -------
 Authentication | No
 Pagination | No
 Offset | No
